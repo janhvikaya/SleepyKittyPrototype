@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 626f17c15eb209f4fa013cdee4893b82
+guid: 57fd264c10d80e94abb900d1343415c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 357585243727820222
-    second: chair_0
+      213: -7367307992566098550
+    second: chair legs_0
+  - first:
+      213: 4751800854908161758
+    second: chair legs_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +49,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 214, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chair_0
+      name: chair legs_0
       rect:
         serializedVersion: 2
-        x: 112
-        y: 238
-        width: 139
-        height: 130
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 2
+        y: 2
+        width: 31
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb5715572e566f400800000000000000
-      internalID: 357585243727820222
+      spriteID: a8593381a6012c990800000000000000
+      internalID: -7367307992566098550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chair legs_1
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 10
+        width: 26
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edec23093b9c1f140800000000000000
+      internalID: 4751800854908161758
       vertices: []
       indices: 
       edges: []
@@ -139,7 +164,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Chair_0: 357585243727820222
+      chair legs_0: -7367307992566098550
+      chair legs_1: 4751800854908161758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -44,11 +44,17 @@ TagManager:
   - name: Objects
     uniqueID: 3500764983
     locked: 0
-  - name: Top
+  - name: OnShelf
     uniqueID: 2558488511
     locked: 0
-  - name: Front
+  - name: TopShelf
     uniqueID: 3573474027
+    locked: 0
+  - name: Above
+    uniqueID: 468933579
+    locked: 0
+  - name: Foreground
+    uniqueID: 1291559697
     locked: 0
   m_RenderingLayers:
   - Default
