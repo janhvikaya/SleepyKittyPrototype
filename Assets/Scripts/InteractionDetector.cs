@@ -3,13 +3,13 @@ using UnityEngine.InputSystem;
 
 public class InteractionDetector : MonoBehaviour
 {
-    private IInteractable interactableInRange = null;
+    public IInteractable interactableInRange = null;
     public GameObject interactionIcon;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        interactionIcon.SetActive(false);   
+        //interactionIcon.SetActive(false);   
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -28,7 +28,7 @@ public class InteractionDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision .TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
+        if(collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
         {
             interactableInRange = interactable;
             interactionIcon.SetActive(true);
