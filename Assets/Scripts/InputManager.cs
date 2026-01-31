@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     public static InputManager instance { get; private set; }
 
     public static Vector3 target;
+    public static Vector2 direction;
 
     void Awake()
     {
