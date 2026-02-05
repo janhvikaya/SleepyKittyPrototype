@@ -9,6 +9,7 @@ public class KittyMovement : MonoBehaviour
 {
     public float moveSpeed = 3f;
 
+    private Vector3 newPos;
     private bool moveUp;
     private Vector3 change;
 
@@ -18,25 +19,28 @@ public class KittyMovement : MonoBehaviour
     
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         moveUp = true;
         change = new Vector3(0f,0f,0f);    
-    }
+    }*/
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, InputManager.target, moveSpeed * Time.deltaTime);
         InputManager.direction = InputManager.target - transform.position;
+        /*newPos = InputManager.target;
+        newPos.y += 0.07f;*/
+        transform.position = Vector3.MoveTowards(transform.position, InputManager.target, moveSpeed * Time.deltaTime);
+        
 
-        if(moveUp)
+        /*if(moveUp)
         {
             gameObject.transform.GetChild(0).localPosition = Vector3.MoveTowards(gameObject.transform.GetChild(0).localPosition, change, moveSpeed * Time.deltaTime);
         }
         if(gameObject.transform.GetChild(0).localPosition == change)
         {
             moveUp = false;
-        }
+        }*/
     }
 }

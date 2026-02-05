@@ -4,19 +4,32 @@ using UnityEngine.InputSystem;
 public class InteractionDetector : MonoBehaviour
 {
     public IInteractable interactableInRange = null;
-    public GameObject interactionIcon;
+
+    public GameObject kitty;
+    private GameObject interactionIcon;
+
+    private Animator kittyAnimator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //interactionIcon.SetActive(false);   
+        interactionIcon = gameObject.transform.GetChild(0).gameObject;
+        interactionIcon.SetActive(false);
+
+        kitty = gameObject.transform.parent.gameObject;
+        kittyAnimator = kitty.GetComponent<Animator>();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            interactableInRange?.Interact();
+            if (interactableInRange != null)
+            {
+                kittyAnimator.SetBool("isInteracting", true);
+                InteractionManager.instance.interacted.Add(interactableInRange);
+                interactableInRange.Interact();
+            }
         }
     }
 

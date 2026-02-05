@@ -83,7 +83,22 @@ public class GameManager : MonoBehaviour
     {
         if (GameManager.currentCol == "Floor" && GameManager.clicked == "Table")
         {
-            StartCoroutine(GameManager.instance.ShiftControlToKitty("FT", "TF", 2));
+            StartCoroutine(GameManager.instance.ShiftControlToKitty(true, "FT", "C", "TF", "isJumpingUp", 2, false));
+        }
+
+        if (GameManager.currentCol == "Table" && GameManager.clicked == "Floor")
+        {
+            StartCoroutine(GameManager.instance.ShiftControlToKitty(true, "TF", "C", "FT", "isJumpingDown", 0, true));
+        }
+
+        if (GameManager.currentCol == "Floor" && GameManager.clicked == "Counter")
+        {
+            StartCoroutine(GameManager.instance.ShiftControlToKitty(false, "FC", "CF", null, "isJumpingUp", 1, false));
+        }
+
+        if (GameManager.currentCol == "Counter" && GameManager.clicked == "Floor")
+        {
+            StartCoroutine(GameManager.instance.ShiftControlToKitty(false, "CF", "FC", null, "isJumpingDown", 0, true));
         }
     }
 
@@ -102,7 +117,7 @@ public class GameManager : MonoBehaviour
         clkMov.enabled = control;
     }
     
-    public IEnumerator ShiftControlToKitty(string wp1, string wp2, int order)
+    public IEnumerator ShiftControlToKitty(bool hasThree, string wp1, string wp2, string wp3, string jump, int order, bool control)
     {
         InputManager.target = waypointDict[wp1];
 
@@ -110,32 +125,54 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitUntil(() => Vector3.Distance(player.transform.position, waypointDict[wp1]) <= 0.01f);
 
-        ShiftToAstar(false);
-
-        yield return new WaitForSeconds(0.1f);
-
-        //PlayAnim
-        animator.SetBool("isJumping", true);
-
-        //change = player.transform.GetChild(0).position;
-        //change.y += 0.7f;
-
-        player.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = order;
-
+        animator.SetBool(jump, true);
+        yield return new WaitForSeconds(0.15f);
+        kittyMov.moveSpeed = 5f;
         currentCol = clicked;
 
-        /*while (player.transform.GetChild(0).position != change)
+        if (order > 0)
         {
-            player.transform.GetChild(0).position = Vector3.MoveTowards(player.transform.GetChild(0).position, change, 2f * Time.deltaTime);
+            ShiftToAstar(control);
+        }
+        
+        yield return new WaitForSeconds(0.1f);
+
+        
+        if (order > 0)
+        {
+            player.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = order;
             yield return null;
-        }*/
+        }
 
         InputManager.target = waypointDict[wp2];
 
         yield return new WaitUntil(() => Vector3.Distance(player.transform.position, waypointDict[wp2]) <= 0.01f);
 
-        animator.SetBool("isJumping", false);
+        if (hasThree)
+        {
+            animator.SetBool(jump, false);
+            kittyMov.moveSpeed = 3f;
 
+            yield return new WaitForSeconds(0.5f);
+            animator.SetBool(jump, true);
+            yield return new WaitForSeconds(0.15f);
+
+            kittyMov.moveSpeed = 5f;
+
+            InputManager.target = waypointDict[wp3];
+            yield return new WaitUntil(() => Vector3.Distance(player.transform.position, waypointDict[wp3]) <= 0.01f);
+        }
+
+        if (order < 1)
+        {
+            ShiftToAstar(control);
+            player.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = order;
+        }
+
+        animator.SetBool(jump, false);
+        kittyMov.moveSpeed = 3f;
+
+        yield return new WaitForSeconds(0.1f);
         InputManager.target = dest;
     }
 }

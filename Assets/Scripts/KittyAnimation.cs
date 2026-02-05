@@ -39,10 +39,10 @@ public class KittyAnimation : MonoBehaviour
         }
         else if (GameManager.useRB)
         {
-            if (Mathf.Abs(InputManager.direction.x) >= 0.01f || Mathf.Abs(InputManager.direction.y) >= 0.01f)
+            if (Mathf.Abs(InputManager.direction.x) >= 0.1f || Mathf.Abs(InputManager.direction.y) >= 0.1f)
             {
                 animator.SetBool("isWalking", true);
-                lastInputs = InputManager.direction;
+                lastInputs = InputManager.direction * 10f;
                 animator.SetFloat("InputX", lastInputs.x);
                 animator.SetFloat("InputY", lastInputs.y);
             }
