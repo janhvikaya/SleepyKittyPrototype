@@ -44,14 +44,34 @@ public class InputManager : MonoBehaviour
 
         if (GameManager.currentCol == GameManager.clicked)
         {
-            target = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            target.z = transform.position.z;
+            if(GameManager.clicked == "Floor")
+            {
+                target = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                target.z = transform.position.z;
+            }
+            else
+            {
+                target = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                target.y += 0.7f;
+                target.z = transform.position.z;
+            }
         }
         else
         {
-            GameManager.dest = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            GameManager.dest.z = transform.position.z;
-            GameManager.instance.Compare();
+            if (GameManager.clicked == "Floor")
+            {
+                GameManager.dest = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                GameManager.dest.z = transform.position.z;
+                GameManager.instance.Compare();
+            }
+            else
+            {
+                GameManager.dest = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                GameManager.dest.y += 0.7f;
+                GameManager.dest.z = transform.position.z;
+                GameManager.instance.Compare();
+            }
+            
         }
     }
 }
