@@ -17,24 +17,24 @@ public class ClickToMove : MonoBehaviour
     {
         InputManager.target = transform.position;
     }
-    /*private void OnEnable()
+    private void OnEnable()
     {
         moveDown = true;
         change = new Vector3(0.08f, -0.8f, 0f);
-    }*/
+    }
     // Update is called once per frame
     void Update()
     {
         transform.position = InputManager.target;
 
-        /*if (moveDown)
+        if (moveDown)
         {
             player.transform.GetChild(0).localPosition = Vector3.MoveTowards(player.transform.GetChild(0).localPosition, change, 3f * Time.deltaTime);
         }
         if (player.transform.GetChild(0).localPosition == change)
         {
             moveDown = false;
-        }*/
+        }
     }
 
 }

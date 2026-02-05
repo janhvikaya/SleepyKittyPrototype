@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CabinetDoor : MonoBehaviour, IInteractable
+public class Interact : MonoBehaviour, IInteractable
 {
     public bool wasInteracted;
     public GameObject player;
@@ -32,42 +32,24 @@ public class CabinetDoor : MonoBehaviour, IInteractable
     void IInteractable.Interact()
     {
         if (!CanInteract()) return;
-        Invoke(nameof(PlayAnim), 0.1f);
+        PlayAnim();
     }
 
     private void PlayAnim()
     {
         SetInteracted(true);
     }
-    public void Undo()
-    {
-        SetInteracted(false);
-    }
 
     public void SetInteracted(bool interacted)
     {
         wasInteracted = interacted;
-
         if (wasInteracted)
         {
-            if (InteractionManager.bowlPushed && !InteractionManager.cabinetOpen)
-            {
-                animator.SetBool("canOpen", false);
-                InteractionManager.instance.interacted.RemoveAt(InteractionManager.instance.interacted.Count - 1);
-
-                wasInteracted = false;
-            }
-            else if (!InteractionManager.bowlPushed)
-            {
-                animator.SetBool("isOpen", true);
-                InteractionManager.cabinetOpen = true;
-            }
+            animator.SetBool("interacted", true);
         }
-
         if (!wasInteracted)
         {
-            animator.SetBool("isOpen", false);
-            InteractionManager.cabinetOpen = false;
+            animator.SetBool("interacted", false);
         }
     }
 }
